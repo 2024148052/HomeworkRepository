@@ -1,0 +1,51 @@
+
+
+.button-login,.button-signup{
+    background-color: lightgreen; /*background-color 사용 1*/
+    border: none;/*border 사용 2*/
+    border-radius: 10%; 
+    cursor: pointer;
+}
+
+.button-cancel{
+    background-color: lightcoral;
+    color: white; /*color 사용 3*/
+    border: none;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif; /*font-family사용 4*/
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0; /*margin 사용 5*/
+    
+}
+
+button{
+    border: none;
+    background-color: white;
+    font-size: 14px; /*font-size사용 6*/
+    text-align: center; /*text-align사용 7*/
+    width: auto; /*width 사용 8*/
+    height: auto; /*height 사용 9*/
+    cursor: pointer;
+}
+
+.form-box{
+    text-align: center;
+    padding: 20px; /*padding 사용 10, properties 10개 다씀*/
+    border: 2px solid black;
+    border-radius: 3%;
+    width: 250px; /*width 사용 8*/
+    height: auto;
+}
+
+h1,h2{
+    font-size: 36px;
+  
+}
