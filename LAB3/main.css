@@ -1,0 +1,193 @@
+
+
+.button-login,.button-signup{
+    background-color: lightgreen; /*background-color 사용 1*/
+    border: none;/*border 사용 2*/
+    border-radius: 10%; 
+    cursor: pointer;
+}
+
+.button-cancel{
+    background-color: lightcoral;
+    color: white; /*color 사용 3*/
+    border: none;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.setup{
+    font-family: Arial, Helvetica, sans-serif; /*font-family사용 4*/
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0; /*margin 사용 5*/
+    
+}
+
+button{
+    border: none;
+    background-color: white;
+    font-size: 14px; /*font-size사용 6*/
+    text-align: center; /*text-align사용 7*/
+    width: auto; /*width 사용 8*/
+    height: auto; /*height 사용 9*/
+    cursor: pointer;
+}
+
+.form-box{
+    text-align: center;
+    padding: 20px; /*padding 사용 10, properties 10개 다씀*/
+    border: 2px solid black;
+    border-radius: 3%;
+    width: 250px; /*width 사용 8*/
+    height: auto;
+}
+
+h1,h2{
+    font-size: 36px;
+  
+}
+
+header{
+    animation-name: header_animation;/*animation-name사용*/
+    animation-duration: 2s; /*animation-duration사용*/
+    overflow: hidden;
+
+}
+
+@keyframes header_animation{/*@keyframes사용*/
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+.container0{
+    
+    width: 1020px;/*컴포넌트들이 1020px안에 존재하게*/
+    margin: 0 auto;
+    overflow: hidden;
+   
+    
+}
+
+.navi{/*네비게이션을 flex-contianer로 구성*/
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.container1{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    flex-direction: column;
+}
+.container2{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+.container3{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 1px solid black;
+    align-items: center;
+}
+.container4{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+img{
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+    
+}
+
+.img-expand{
+    transition: transform 2s ease-in-out;
+}
+
+.img-expand:hover {
+    transform: scale(2);
+}
+
+.title-show{
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.movie-title{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24pt;
+    color: antiquewhite;
+    opacity: 0;
+}
+
+.title-show:hover .movie-title{
+    opacity: 1;
+}
+
+.img-cont1{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+}
+
+.img-cont2{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    
+}
+
+@media (max-width: 480px){
+    .navi{
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+    .container0{
+        width: 100%;
+        height: auto;
+        justify-content: center;
+            
+    }
+    .container3{
+        flex-direction: column;
+        width: auto;
+    }
+    .img-cont1,.img-cont2{
+        flex-direction: column;
+    }
+    
+}
+
+@media (min-width: 481px) and (max-width: 800px) {
+    .container3{
+        flex-direction: column;
+    }
+
+}
+
+@media (min-width: 801px) {
+    .container3{
+        flex-direction: row;
+    }
+
+
+}
