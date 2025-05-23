@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <title>mainpage</title>
+</head>
+<body>
+    <div class="container0">
+
+        <header>
+            <h1>영화를 무제한으로!</h1>
+        </header>
+
+        <nav class="navi">
+            <a href="signup.html">회원가입</a><!--회원가입 페이지 링킹-->
+            <a href="login.html">로그인</a><!--로그인 페이지 링킹-->
+        </nav>
+
+        <section class="controls">
+            <input type="text" id="searchInput" placeholder="영화 제목 검색">
+            <div class="sort-options">
+                <label><input type="radio" name="sort" value="date_asc"> 출시일 오름차순</label>
+                <label><input type="radio" name="sort" value="date_desc"> 출시일 내림차순</label>
+                <label><input type="radio" name="sort" value="ave_desc"> 평점 높은순</label>
+                <label><input type="radio" name="sort" value="ave_asc"> 평점 낮은순</label>
+            </div>
+        </section>
+
+        <main>
+            <div id="movieContainer" class="movie-grid"></div>
+        </main>
+
+    </div>
+</body>
+<script>
+let movies = [];
+let filteredMovies = [];
+let page = 0;
+const limit = 3;
+
+window.onload = async () => {
+  const res = await fetch('product.json');
+  movies = await res.json();
+  filteredMovies = [...movies];
+  loadNextPage();
+
+  window.addEventListener('scroll', handleScroll);
+  document.getElementById('searchInput').addEventListener('input', handleSearch);
+  document.querySelectorAll('input[name="sort"]').forEach(radio => {
+    radio.addEventListener('change', handleSort);
+  });
+};
+
+function handleSearch() {
+  const keyword = document.getElementById('searchInput').value.toLowerCase();
+  filteredMovies = movies.filter(movie =>
+    movie.title.toLowerCase().includes(keyword)
+  );
+  applySort(); 
+  resetAndLoad();
+}
+
+function handleSort() {
+  applySort();
+  resetAndLoad();
+}
+
+function applySort() {
+  const selected = document.querySelector('input[name="sort"]:checked');
+  if (!selected) return;
+  const option = selected.value;
+
+  if (option === 'date_asc') {
+    filteredMovies.sort((a, b) => new Date(a.release_date) - new Date(b.release_date));
+  } else if (option === 'date_desc') {
+    filteredMovies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+  } else if (option === 'ave_desc') {
+    filteredMovies.sort((a, b) => b.vote_average - a.vote_average);
+  } else if (option === 'ave_asc') {
+    filteredMovies.sort((a, b) => a.vote_average - b.vote_average);
+  }
+}
+
+function resetAndLoad() {
+  page = 0;
+  document.getElementById('movieContainer').innerHTML = '';
+  loadNextPage();
+}
+
+function loadNextPage() {
+  const start = page * limit;
+  const end = start + limit;
+  const nextMovies = filteredMovies.slice(start, end);
+  displayMovies(nextMovies);
+  page++;
+}
+
+function displayMovies(movieList) {
+  const container = document.getElementById('movieContainer');
+
+  movieList.forEach(movie => {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.innerHTML = `
+      <img src="${movie.poster}" alt="${movie.title}">
+      <h4>${movie.title}</h4>
+      <p>📅 ${movie.release_date}</p>
+      <p>✰ ${movie.vote_average}</p>
+      <div class="plot">${movie.overview}</div>
+    `;
+
+    const plot = card.querySelector('.plot');
+
+    
+    card.addEventListener('mouseenter', () => {
+      plot.style.display = 'block';
+    });
+    card.addEventListener('mouseleave', () => {
+      plot.style.display = 'none';
+    })
+    container.appendChild(card);
+  });
+}
+
+function handleScroll() {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+    loadNextPage();
+  }
+}
+
+</script>
+</html>
