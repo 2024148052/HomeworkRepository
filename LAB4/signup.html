@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <title>signup</title>
+</head>
+<body>
+    <div class="setup">
+    <h1>환영합니다!</h1>
+    <!-- 로그인 창으로 이동하는 버튼 -->
+    <button onclick="location.href='login.html'">로그인</button>
+
+    <div class="form-box">
+        <p>
+            <!--text type1 사용, autofocus 1사용-->
+            이름:
+            <input type="text" name="name" autofocus="name">
+        </p>
+    
+        <p>
+            <!--date type2 사용-->
+            생년월일:
+            <input type="date" name="birth">
+        </p>
+    
+        <p>
+            <!--select 사용-->
+            성별:
+            <input type="radio" name="sex" value="male">
+            <label for="male">남성</label>
+            <input type="radio" name="sex" value="female">
+            <label for="female">여성</label>
+        </p>
+    
+        <p>
+            <!--number type3 사용, step 2사용-->
+            학년:
+            <input type="number" name="grade" min="1" max="4" step="1">
+        </p>
+    
+        <p>
+            <!--tel type4 사용, placeholder 3, required 4 사용-->
+            전화번호:
+            <input type="tel" name="phone" placeholder="010-0000-0000" pattern="^010-\d{4}-\d{4}$" required>
+    
+        </p>
+    
+        <p>
+            <!--required 4 사용-->
+            아이디:
+            <input type="text" name="username" required>
+        </p>
+    
+        <p>
+            <!--password type5 사용-->
+            비밀번호:
+            <input type="password" required>
+        </p>
+    
+        <p>
+            <!--email type6 사용, autocomplete 5 사용-->
+            이메일:
+            <input type="email" name="email" autocomplete="on">
+        </p>
+        
+        <p>
+            <!--radio 사용-->
+            선호 장르:
+            <select name="genre">
+                <option value="romance">로맨스</option>
+                <option value="action">액션</option>
+                <option value="comedy">개그</option>
+                <option value="fantasy">판타지</option>
+                <option value="documentary">다큐멘터리</option>
+                <option value="mystery">미스테리</option>
+                <option value="other">기타</option>
+            </select>
+        </p>
+        
+        <!--회원가입,취소 버튼-->
+        <div>
+            <button type="submit" class="button-signup">회원가입</button>
+            <button type="submit" class="button-cancel">취소</button>
+        </div>
+    
+    </div>
+    </div>
+    
+    
+</body>
+</html>
